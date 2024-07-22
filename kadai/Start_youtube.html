@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <script src="js/jquery-2.1.3.min.js"></script>
+    <link rel="stylesheet" href="css/Start_youtube.css" />
+    <title>じゃんけんクエスト</title>
+  </head>
+
+  <body>
+    <!-- ===========ヘッダー=========== -->
+    <header>
+      <img src="./img/youtube.png" width="3%" />
+      <h1>スタート</h1>
+      <!-- <h2><font color="red">スタート</font>→PC→ボーナス→ボス</h2> -->
+    </header>
+
+    <main>
+      <div class="youtube_wrap">
+        <div class="youtube_left">
+          <div class="movie">
+            <div class="user">
+              <!-- ===========ステータス=========== -->
+              <h3>ステータス</h3>
+              <h4>
+                HP:<span id="userHpNum">100</span>
+                <ul>
+                  <li id="pcGuBtn">グー50</li>
+                  <li id="pcChoBtn">チョキ20</li>
+                  <li id="pcParBtn">パー30</li>
+                </ul>
+              </h4>
+            </div>
+            <div class="pc"></div>
+            <div class="underline1"></div>
+          </div>
+          <h3>じゃんけんクエスト</h3>
+        </div>
+
+        <div class="youtube_right">
+          <h2><font color="red">スタート</font>→PC→ボーナス→ボス</h2>
+        </div>
+      </div>
+
+      <!-- ===========ボタン=========== -->
+      <div class="Button" id="ButtonStart">
+        <center>
+          <p>スタート</p>
+        </center>
+      </div>
+    </main>
+
+    <footer></footer>
+
+    <script>
+      // ===========ボタン遷移===========
+      $("#ButtonStart").on("click", function () {
+        location.href = "Battle_youtube.html";
+      });
+    </script>
+  </body>
+</html>

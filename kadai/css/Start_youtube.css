@@ -1,0 +1,301 @@
+/* =========== 全体 =========== */
+body {
+  text-align: left;
+  background-color: #212121;
+}
+
+/* =========== スペース =========== */
+.br_16px {
+  padding: 8px 0;
+}
+.br_24px {
+  padding: 12px 0;
+}
+.br_30px {
+  padding: 15px 0;
+}
+.br_40px {
+  padding: 20px 0;
+}
+.br_60px {
+  padding: 30px 0;
+}
+.br_80px {
+  padding: 40px 0;
+}
+
+/* =========== ヘッダー =========== */
+header {
+  display: flex;
+  background-color: #212121;
+  text-align: left;
+
+  align-items: center;
+}
+
+header h1 {
+  font-size: 26px;
+  font-weight: bold;
+  color: #fff;
+}
+
+header h2 {
+  font-size: 18px;
+  color: #fff;
+}
+
+/* =========== ステータス =========== */
+.Status {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+}
+
+.Status h3 {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.Status h4 {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.Status ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.Status li {
+  display: inline-block;
+  margin-right: 20px;
+}
+
+.Status li:last-child {
+  margin-right: 0;
+}
+
+/* =========== ボタン =========== */
+
+.Button {
+  margin: auto; /*ボタン位置*/
+  display: flex; /*文字自由調整*/
+  justify-content: center; /*左右*/
+  align-items: center; /*上下*/
+  color: #fff;
+  background-color: #f32f2f;
+  height: 60px;
+  width: 300px;
+  border-bottom: 5px solid #a22a2a;
+  border-radius: 5px;
+}
+.Button:hover,
+a.Button:hover {
+  color: #fff;
+  background: #a22a2a;
+  border-bottom: 5px solid #a22a2a;
+}
+
+
+/* =========== 個別パターン =========== */
+/* パターン3：影付き */
+.Status {
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.Status_user,
+.Status_pc {
+  background-color: #fff;
+  padding: 15px;
+  border-radius: 5px;
+}
+
+/* =========== 枠組み =========== */
+.youtube_wrap {
+  display: flex;
+  background-color: #212121;
+  width: 90%;
+  margin: 10px auto;
+  color: #f0f0f0;
+}
+
+.youtube_left {
+  align-items: flex-end; /* 垂直方向の配置を下部に変更 */
+  background-color: #212121;
+  border-radius: 10px;
+  width: 75%;
+  margin: auto;
+  color: #f0f0f0;
+  font-weight: bold;
+}
+
+.movie {
+  display: flex;
+  background-color: #212121;
+  width: 100%;
+  color: #f0f0f0;
+  font-weight: bold;
+  border: solid 1px #737373; /* 線 */
+  border-radius: 15px; /* 角の丸み */
+  aspect-ratio: 16/9;
+  position: relative; /* 相対配置に変更 */
+}
+
+.user {
+  padding: 20px;
+  background-color: #ffffff;
+  width: 50%;
+  height: 75%;
+  margin: auto auto 7% auto;
+  color: #000000;
+  border: solid 1px #737373; /* 線 */
+  font-weight: bold;
+  border-radius: 5px; /* 角の丸み */
+}
+
+.pc {
+  padding: 20px;
+  background-color: #ffffff;
+  width: 50%;
+  height: 75%;
+  margin: auto auto 7% auto;
+  color: #000000;
+  border: solid 1px #737373; /* 線 */
+  font-weight: bold;
+  border-radius: 5px; /* 角の丸み */
+}
+
+.youtube_right {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background-color: #212121;
+  border-radius: 10px;
+  margin: auto;
+  color: #f0f0f0;
+  font-weight: bold;
+}
+
+.underline1 {
+  position: absolute; /* 絶対配置に変更 */
+  bottom: 0; /* 下部に配置 */
+  left: 0; /* 左側に配置 */
+  width: 100%; /* `movie` ボックス全体に横幅を広げる */
+  height: 4px; /* 線の太さを調整 */
+  background-color: #ddd;
+  margin: 0 0 5% 0;
+}
+
+.underline1::after {
+  content: "";
+  display: block;
+  height: 100%; /* 線の高さを`underline`要素と同じにする */
+  background-color: #f32f2f;
+  width: 25%;
+}
+
+.underline2 {
+  position: absolute; /* 絶対配置に変更 */
+  bottom: 0; /* 下部に配置 */
+  left: 0; /* 左側に配置 */
+  width: 100%; /* `movie` ボックス全体に横幅を広げる */
+  height: 4px; /* 線の太さを調整 */
+  background-color: #ddd;
+  margin: 0 0 5% 0;
+}
+
+.underline2::after {
+  content: "";
+  display: block;
+  height: 100%; /* 線の高さを`underline`要素と同じにする */
+  background-color: #f32f2f;
+  width: 45%;
+}
+
+.underline3 {
+  position: absolute; /* 絶対配置に変更 */
+  bottom: 0; /* 下部に配置 */
+  left: 0; /* 左側に配置 */
+  width: 100%; /* `movie` ボックス全体に横幅を広げる */
+  height: 4px; /* 線の太さを調整 */
+  background-color: #ddd;
+  margin: 0 0 5% 0;
+}
+
+.underline3::after {
+  content: "";
+  display: block;
+  height: 100%; /* 線の高さを`underline`要素と同じにする */
+  background-color: #f32f2f;
+  width: 65%;
+}
+
+.underline4 {
+  position: absolute; /* 絶対配置に変更 */
+  bottom: 0; /* 下部に配置 */
+  left: 0; /* 左側に配置 */
+  width: 100%; /* `movie` ボックス全体に横幅を広げる */
+  height: 4px; /* 線の太さを調整 */
+  background-color: #ddd;
+  margin: 0 0 5% 0;
+}
+
+.underline4::after {
+  content: "";
+  display: block;
+  height: 100%; /* 線の高さを`underline`要素と同じにする */
+  background-color: #f32f2f;
+  width: 85%;
+}
+
+ul {
+  padding: 0;
+  display: table; /* 定義 */
+  table-layout: fixed;
+  width: 100%;
+}
+li {
+  text-align: left;
+  list-style-type: none;
+  border: 1px solid #666;
+  background-color: #fff;
+  display: table-cell; /* 定義 */
+}
+
+#userGuBtn {
+  background: #e5004f;
+}
+#userGuBtn:hover {
+  background: #e550a0;
+}
+#userChoBtn {
+  background: #fff100;
+}
+#userChoBtn:hover {
+  background: #ffff28;
+}
+#userParBtn {
+  background: #0086d1;
+}
+#userParBtn:hover {
+  background: #3cb4d1;
+  /* color:#fff; */
+}
+
+#pcGuBtn {
+  background: #e5004f;
+}
+#pcChoBtn {
+  background: #fff100;
+}
+#pcParBtn {
+  background: #0086d1;
+}

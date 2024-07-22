@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <script src="js/jquery-2.1.3.min.js"></script>
+    <link rel="stylesheet" href="css/Start_youtube.css" />
+    <title>じゃんけんクエスト</title>
+  </head>
+
+  <body>
+    <!-- ===========ヘッダー=========== -->
+    <header>
+      <img src="./img/youtube.png" width="3%" />
+      <h1>スタート</h1>
+    </header>
+
+    <main>
+      <div class="youtube_wrap">
+        <div class="youtube_left">
+          <div class="movie">
+            <div class="user">
+              <h3><p>あなた</p></h3>
+              <h4>
+                HP:<span id="userHp"></span>
+                <ul>
+                  <li id="userGuBtn">グー<span id="userGuNum"></span></li>
+                  <li id="userChoBtn">チョキ<span id="userChoNum"></span></li>
+                  <li id="userParBtn">パー<span id="userParNum"></span></li>
+                </ul>
+              </h4>
+
+              <div>
+                あなたの出した手は？「<span id="userHand">なに？</span>」
+              </div>
+              <div id="judgment"></div>
+              <div id="resultStage"></div>
+            </div>
+            <div class="pc">
+              <h3><p>ボス</p></h3>
+              <h4>
+                HP:<span id="pcHp"></span>
+                <ul>
+                  <li id="pcGuBtn">グー<span id="pcGuNum"></span></li>
+                  <li id="pcChoBtn">チョキ<span id="pcChoNum"></span></li>
+                  <li id="pcParBtn">パー<span id="pcParNum"></span></li>
+                </ul>
+              </h4>
+
+              <div>ボスの出した手は？「<span id="pcHand">なに？</span>」</div>
+            </div>
+            <div class="underline4"></div>
+          </div>
+          <h3>じゃんけんクエスト</h3>
+        </div>
+
+        <div class="youtube_right">
+          <h2>スタート→PC→ボーナス→<font color="red">ボス</font></h2>
+        </div>
+      </div>
+
+      <center>
+        <div id="ButtonFin" class="Button">クリア！</div>
+      </center>
+      <center>
+        <div id="ButtonBack" class="Button">最初から</div>
+      </center>
+    </main>
+
+    <footer></footer>
+
+    <script>
+      // ===========変数定義===========
+      var userHand;
+      var pcHand;
+      var result;
+
+      const queryString = window.location.search;
+      const urlParams = new URLSearchParams(queryString);
+      var userHp = Number(urlParams.get("userHp"));
+      const userGuNum = 50;
+      const userChoNum = 20;
+      const userParNum = 30;
+
+      var bossHp = 200;
+      const bossGuNum = 20;
+      const bossChoNum = 30;
+      const bossParNum = 30;
+
+      var flag = 0;
+
+      // ===========戦闘前準備===========
+      pcHp = bossHp;
+      pcGuNum = bossGuNum;
+      pcChoNum = bossChoNum;
+      pcParNum = bossParNum;
+
+      $("#userHp").html(userHp);
+      $("#userGuNum").html(userGuNum);
+      $("#userChoNum").html(userChoNum);
+      $("#userParNum").html(userParNum);
+      $("#pcHp").html(pcHp);
+      $("#pcGuNum").html(bossGuNum);
+      $("#pcChoNum").html(bossChoNum);
+      $("#pcParNum").html(bossParNum);
+
+      $("#ButtonFin").hide(); //次へボタンを隠しておく
+      $("#ButtonBack").hide(); //次へボタンを隠しておく
+
+      // ===========処理===========
+      $("#userGuBtn").on("click", function () {
+        if (flag == 0) {
+          userHand = "グー";
+          $("#userHand").html(userHand);
+          GetPcHand();
+          if (userHand == pcHand) {
+            result = "あいこ";
+          } else if (
+            (userHand == "グー" && pcHand == "チョキ") ||
+            (userHand == "チョキ" && pcHand == "パー") ||
+            (userHand == "パー" && pcHand == "グー")
+          ) {
+            result = "勝ち";
+            if (userHand == "グー") {
+              dmg = userGuNum;
+            }
+            if (userHand == "チョキ") {
+              dmg = userChoNum;
+            }
+            if (userHand == "パー") {
+              dmg = userParNum;
+            }
+            pcHp = pcHp - dmg;
+            if (pcHp <= 0) {
+              $("#pcHp").html("0");
+              $("#resultStage").html("あなたの勝ち！");
+              $("#ButtonFin").show();
+              flag = 1;
+            } else {
+              $("#pcHp").html(pcHp);
+            }
+          } else {
+            result = "負け";
+            if (userHand == "グー") {
+              dmg = pcParNum;
+            }
+            if (userHand == "チョキ") {
+              dmg = pcGuNum;
+            }
+            if (userHand == "パー") {
+              dmg = pcChoNum;
+            }
+            userHp = userHp - dmg;
+            if (userHp <= 0) {
+              $("#userHp").html("0");
+              $("#resultStage").html("あなたの負け…");
+              $("#ButtonBack").show();
+              flag = 1;
+            } else {
+              $("#userHp").html(userHp);
+            }
+          }
+          $("#judgment").html(result);
+        } else {
+        }
+      });
+
+      $("#userChoBtn").on("click", function () {
+        if (flag == 0) {
+          userHand = "チョキ";
+          GetPcHand();
+          if (userHand == pcHand) {
+            result = "あいこ";
+          } else if (
+            (userHand == "グー" && pcHand == "チョキ") ||
+            (userHand == "チョキ" && pcHand == "パー") ||
+            (userHand == "パー" && pcHand == "グー")
+          ) {
+            result = "勝ち";
+            if (userHand == "グー") {
+              dmg = userGuNum;
+            }
+            if (userHand == "チョキ") {
+              dmg = userChoNum;
+            }
+            if (userHand == "パー") {
+              dmg = userParNum;
+            }
+            pcHp = pcHp - dmg;
+            if (pcHp <= 0) {
+              $("#pcHp").html("0");
+              $("#resultStage").html("あなたの勝ち！");
+              $("#ButtonFin").show();
+              flag = 1;
+            } else {
+              $("#pcHp").html(pcHp);
+            }
+          } else {
+            result = "負け";
+            if (userHand == "グー") {
+              dmg = pcParNum;
+            }
+            if (userHand == "チョキ") {
+              dmg = pcGuNum;
+            }
+            if (userHand == "パー") {
+              dmg = pcChoNum;
+            }
+            userHp = userHp - dmg;
+            if (userHp <= 0) {
+              $("#userHp").html("0");
+              $("#resultStage").html("あなたの負け…");
+              $("#ButtonBack").show();
+              flag = 1;
+            } else {
+              $("#userHp").html(userHp);
+            }
+          }
+          $("#judgment").html(result);
+        } else {
+        }
+      });
+
+      $("#userParBtn").on("click", function () {
+        if (flag == 0) {
+          userHand = "パー";
+          GetPcHand();
+          if (userHand == pcHand) {
+            result = "あいこ";
+          } else if (
+            (userHand == "グー" && pcHand == "チョキ") ||
+            (userHand == "チョキ" && pcHand == "パー") ||
+            (userHand == "パー" && pcHand == "グー")
+          ) {
+            result = "勝ち";
+            if (userHand == "グー") {
+              dmg = userGuNum;
+            }
+            if (userHand == "チョキ") {
+              dmg = userChoNum;
+            }
+            if (userHand == "パー") {
+              dmg = userParNum;
+            }
+            pcHp = pcHp - dmg;
+            if (pcHp <= 0) {
+              $("#pcHp").html("0");
+              $("#resultStage").html("あなたの勝ち！");
+              $("#ButtonFin").show();
+              flag = 1;
+            } else {
+              $("#pcHp").html(pcHp);
+            }
+          } else {
+            result = "負け";
+            if (userHand == "グー") {
+              dmg = pcParNum;
+            }
+            if (userHand == "チョキ") {
+              dmg = pcGuNum;
+            }
+            if (userHand == "パー") {
+              dmg = pcChoNum;
+            }
+            userHp = userHp - dmg;
+            if (userHp <= 0) {
+              $("#userHp").html("0");
+              $("#resultStage").html("あなたの負け…");
+              $("#ButtonBack").show();
+              flag = 1;
+            } else {
+              $("#userHp").html(userHp);
+            }
+          }
+          $("#judgment").html(result);
+        } else {
+        }
+      });
+
+      // ===========関数定義===========
+      // PC手決め関数
+      function GetPcHand() {
+        const r = Math.random() * 3; //小数点0.000001~0.99999
+        const n = Math.ceil(r); //繰り上げ0.01➡️1
+        if (n == 1) {
+          pcHand = "グー";
+        } else if (n == 2) {
+          pcHand = "チョキ";
+        } else if (n == 3) {
+          pcHand = "パー";
+        }
+        $("#pcHand").html(pcHand);
+      }
+
+      // 表示更新関数
+      function updateResult(text) {
+        $("#judgment").html(text);
+      }
+
+      // ===========ボタン遷移===========
+      $("#ButtonFin").on("click", function () {
+        location.href = "Start_youtube.html";
+      });
+      $("#ButtonBack").on("click", function () {
+        location.href = "Start_youtube.html";
+      });
+    </script>
+  </body>
+</html>
